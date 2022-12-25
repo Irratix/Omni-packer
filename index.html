@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+</head>
+
+<body>
+</body>
+
+<link rel="stylesheet" href="style.css"></style>
+
+<!-- main code -->
+<script type="text/javascript">
+
+// list of languages
+Languages = [
+    "JavaScript",
+];
+
+// initializing global objects
+const Packers = {};
+for (const lang of Languages)
+    Packers[lang] = {};
+
+</script>
+
+<!-- other JS files -->
+<script src="packer_types.js"></script>
+
+<!-- files with packers go here -->
+<script src="./JS_packers/js_byte_to_char.js"></script>
+
+<!-- html -->
+<script src="build_html.js"></script>
+<script src="eventlisteners.js"></script>
+
+<!-- apply packers -->
+<script type="text/javascript">
+
+// apply packers
+function pack() {
+    const source = document.getElementById("source")
+        .value
+        .replace(/\n\r|\r\n/g, '\n');
+    const lang = document.querySelector('input[name="language_selector"]:checked').value;
+    const packer_type = document.querySelector('input[name="type_selector"]:checked').value;
+    const scorer = Packers.evaluators[packer_type];
+
+    let solutions = [];
+    for (const method of Packers[lang][packer_type]) {
+        if (!method.validity_check(source))
+            continue;
+        solutions.push([method.packer(source), method]);
+    }
+    solutions.sort((elem1, elem2) => scorer(elem1[0]) - scorer(elem2[0]));
+
+    let solutions_html = "";
+    for (const solution of solutions)
+        solutions_html += solution_to_html(... solution);
+    
+    document.getElementById("output").innerHTML = solutions_html;
+}
+
+</script>
