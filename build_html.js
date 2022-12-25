@@ -11,30 +11,33 @@ function make_radio_button(items, id, text) {
     return radio;
 }
 
-document.body.innerHTML += make_radio_button(Languages, "language_selector", "Choose a language");
-document.body.innerHTML += make_radio_button(
+// element to add innerHTML to
+let content = document.getElementById("content");
+
+content.innerHTML += make_radio_button(Languages, "language_selector", "Language");
+content.innerHTML += make_radio_button(
     Object.keys(Packers[document.querySelector('input[name="language_selector"]:checked').value]),
     "type_selector",
     "What do you want to pack?"
 );
 
 /***** input *****/
-document.body.innerHTML += `
+content.innerHTML += `
 <div>
     <label for="source">Source input:</label>
     <br>
     <textarea id="source" rows="12" cols="60"></textarea>
-</div>`;
+</div><br>`;
 
-document.body.innerHTML += `
+content.innerHTML += `
+<button onclick="pack()">Generate Packed Solutions</button>`;
+
+content.innerHTML += `
 <input type="checkbox" id="auto_update" name="auto_update" checked>
-<label for="auto_update">Automatically update packers on input (some packers may be very slow)</label><br>`;
-
-document.body.innerHTML += `
-<button onclick="pack()">generate packed solutions</button><br><br><br>`;
+<label for="auto_update">Auto Update (May be slow)</label><br>`;
 
 /***** output *****/
-document.body.innerHTML += `<div id="output" class="output"></div>`;
+content.innerHTML += `<div id="output" class="output"></div>`;
 
 function solution_to_html(solution, packer) {
     return `<a>From ${packer.name}:</a><br><a class="code">${solution}</a><br><br>`;

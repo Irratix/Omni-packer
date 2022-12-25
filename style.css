@@ -1,5 +1,43 @@
 body {
-    background-color: rgb(45, 45, 87);
+    background-color: rgb(17, 26, 53);
     color: rgb(206, 206, 233);
     font-size: 20px;
+    font-family: Atkinson, sans-serif;
+    padding: 15px;
+}
+
+#content {
+    background-color: #fff1;
+    padding: 20px;
+}
+
+textarea {
+    background-color: #fff1;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+}
+
+input[type=checkbox] {
+    transform: scale(1.4);
+}
+
+#auto_update {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+button {
+    font-size: 20px;
+    font-family: Atkinson, sans-serif;
+    border: none;
+    background-color: rgb(115, 176, 255);
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+@font-face {
+    font-family: Atkinson;
+    src: url(AtkinsonHyperlegible.ttf);
 }
