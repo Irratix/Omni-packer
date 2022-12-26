@@ -4,12 +4,16 @@ body {
     font-size: 20px;
     font-family: Atkinson, sans-serif;
     padding: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-#content {
+#input {
     background-color: #fff1;
     padding: 20px;
-    max-width: 800px;
+    width: 500px;
+    min-width: 500px;
 }
 
 textarea {
@@ -19,6 +23,8 @@ textarea {
     padding: 5px;
     font-size: 16px;
     width: calc(100% - 15px);
+    resize: vertical;
+
 }
 
 input[type=checkbox] {
@@ -41,10 +47,11 @@ button {
 }
 
 #output {
-    margin-top: 35px;
-    background-color: rgb(17, 26, 53);
-    padding: 14px;
+    background-color: #fff1;
+    padding: 20px;
     word-wrap: break-word;
+    width: 500px;
+
 }
 
 .packername {
@@ -52,7 +59,7 @@ button {
     color: rgb(115, 176, 255);
 }
 
-.output {
+.code {
     font-family: "Consolas", monospace;
 }
 

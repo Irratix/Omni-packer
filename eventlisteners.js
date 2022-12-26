@@ -15,3 +15,7 @@ document.getElementById("source").oninput = (e) => {
         return;
     pack();
 };
+
+window.onload = function(e) {
+    pack();
+};
