@@ -30,7 +30,7 @@ content.innerHTML += `
 </div><br>`;
 
 content.innerHTML += `
-<button onclick="pack()">Generate Packed Solutions</button>`;
+<button onclick="pack()">Pack</button>`;
 
 content.innerHTML += `
 <input type="checkbox" id="auto_update" name="auto_update" checked>
@@ -40,5 +40,5 @@ content.innerHTML += `
 content.innerHTML += `<div id="output" class="output"></div>`;
 
 function solution_to_html(solution, packer) {
-    return `<a>From ${packer.name}:</a><br><a class="code">${solution}</a><br><br>`;
+    return `<span class="packername">${packer.name}</span><br><span class="code">${solution}</span><br><br>`;
 }

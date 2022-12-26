@@ -29,7 +29,6 @@ input[type=checkbox] {
 #auto_update {
     margin-left: 15px;
     margin-right: 5px;
-    margin-bottom: 40px;
 }
 
 button {
@@ -39,6 +38,22 @@ button {
     background-color: rgb(115, 176, 255);
     padding: 4px 8px;
     border-radius: 3px;
+}
+
+#output {
+    margin-top: 35px;
+    background-color: rgb(17, 26, 53);
+    padding: 14px;
+    word-wrap: break-word;
+}
+
+.packername {
+    font-weight: bold;
+    color: rgb(115, 176, 255);
+}
+
+.output {
+    font-family: "Consolas", monospace;
 }
 
 @font-face {
