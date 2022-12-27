@@ -61,6 +61,8 @@ button {
 
 .code {
     font-family: "Consolas", monospace;
+    display: block;
+    white-space: pre-wrap;
 }
 
 @font-face {

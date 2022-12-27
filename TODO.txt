@@ -4,6 +4,7 @@
     * Show authors (if available)
     * Find a good way to show tips (if available)
     * Make failures not look horrendous
+    * show byte/char/score counter
 - Add packers (any others are welcome too):
     * JS number ASCII packer
     * JS number base 1<<20 packer
