@@ -40,3 +40,7 @@ input.innerHTML += `
 function solution_to_html(solution, packer) {
     return `<span class="packername">${packer.name}</span><br><span class="code">${solution}</span><br><br>`;
 }
+
+function failed_to_html(packer) {
+    return `<span class="failure_header">${packer.name}</span><br><span class="failure">${packer.limitations}</span><br><br>`;
+}

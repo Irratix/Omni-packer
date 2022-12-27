@@ -10,4 +10,7 @@ Packers.evaluators = {
     "code: fewest bytes": function(code) {
         return new TextEncoder().encode(code).length;
     },
+    "number: fewest bytes": function(code) {
+        return new TextEncoder().encode(code).length;
+    },
 }

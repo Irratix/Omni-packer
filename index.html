@@ -30,6 +30,7 @@ for (const lang of Languages)
 
 <!-- files with packers go here -->
 <script src="./JS_packers/js_byte_to_char.js"></script>
+<script src="./JS_packers/js_number_bytes.js"></script>
 
 <!-- html -->
 <script src="build_html.js"></script>
@@ -48,9 +49,12 @@ function pack() {
     const scorer = Packers.evaluators[packer_type];
 
     let solutions = [];
+    let failures_html = "";
     for (const method of Packers[lang][packer_type]) {
-        if (!method.validity_check(source))
+        if (!method.validity_check(source)) {
+            failures_html += failed_to_html(method);
             continue;
+        }
         solutions.push([method.packer(source), method]);
     }
     solutions.sort((elem1, elem2) => scorer(elem1[0]) - scorer(elem2[0]));
@@ -59,7 +63,7 @@ function pack() {
     for (const solution of solutions)
         solutions_html += solution_to_html(... solution);
     
-    document.getElementById("output").innerHTML = solutions_html;
+    document.getElementById("output").innerHTML = solutions_html + failures_html;
 }
 
 </script>

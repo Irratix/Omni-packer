@@ -67,3 +67,13 @@ button {
     font-family: Atkinson;
     src: url(AtkinsonHyperlegible.ttf);
 }
+
+.failure {
+    background-color: #532626;
+}
+
+.failure_header {
+    font-weight: bold;
+    color: rgb(115, 176, 255);
+    background-color: #803b3b;
+}
