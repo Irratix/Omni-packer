@@ -57,7 +57,7 @@ Packers["JavaScript"]["code: fewest chars"].push({
     'name': "romancortes / 3:1",
     'authors': "Román Cortés",
     'src': "http://www.romancortes.com/v2/javascript-code-golf.html",
-    'limitations': "First third of the code can be charcodes 32-128, second third 32-127, and the last third 32-126.",
+    'limitations': "First third of the code can be charcodes 32-128, middle third 32-127, and the last third 32-126.",
     'tips': [
         "The moment the packed string is evaluated, variable i is available with value -1",
     ],
