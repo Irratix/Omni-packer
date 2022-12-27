@@ -38,31 +38,9 @@ input.innerHTML += `
 <label for="auto_update">Auto Update (May be slow)</label><br>`;
 
 function solution_to_html(solution, packer) {
-    return `<span class="packername">${packer.name}</span><br><code class="code">${fix_unprintables_html(solution)}</code><br><br>`;
+    return `<span class="packername">${packer.name}</span><br><span class="code">${solution}</span><br><br>`;
 }
 
 function failed_to_html(packer) {
     return `<span class="failure_header">${packer.name}</span><br><span class="failure">${packer.limitations}</span><br><br>`;
-}
-
-// source: https://stackoverflow.com/a/56148551
-function fix_unprintables_html(html) {
-    // _spc ==> Single Space Char chr(32)
-    // html = html.replace(/ /g, '<span class="_m _spc">&middot;</span>');
-
-    // _tab ==> Tab Stops chr(9)
-    // html = html.replace(/\t/g, '<span class="_m _tab">🠖</span>');
-
-    // CarriageReturn chr(13)
-    // html = html.replace(/\r/g, '');
-
-    // _brk ==> NewLine chr(10)
-    // html = html.replace(/\n/g, '<span class="_m _brk">¶</span><br>');
-
-    // _np  ==> non-printable lower ASCII range chr(0)...chr(31) + personally known char(s)
-    html = html.replace(/([\u0000-\u001F\u00AD])/g, '<span class="_m _np">$1</span>');
-
-    // _uc  ==> Upper unicode range starting chr(255)
-    html = html.replace(/([\u00FF-\u9999])/g, '<span class="_m _uc">$1</span>');
-    return html;
 }

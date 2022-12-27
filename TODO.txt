@@ -6,8 +6,12 @@
     * Make failures not look horrendous
     * show byte/char/score counter
 - Add packers (any others are welcome too):
-    * JS number ASCII packer
-    * JS number base 1<<20 packer
     * JS 4:1 packer by Frank Force
+    * regpack
+    * bitcrusher
     * Python 2:1
     * Python 3:1
+
+BUGS:
+- HTML has a hard time printing some strings. Example: the JavaScript, number: fewest bytes ASCII packer breaks on the number 7745.
+  The encoded string there should be "<A", this HTML interprets as opening a new tag. Not sure how to fix it.
