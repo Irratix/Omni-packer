@@ -1,10 +1,12 @@
 - Add option for using text file as input
 - Improve output in the following ways:
+    * Highlight best solution
     * Add icon for linking to source (if available)
     * Show authors (if available)
     * Find a good way to show tips (if available)
     * Make failures not look horrendous
     * show byte/char/score counter
+    * automatically resize
 - Add packers (any others are welcome too):
     * JS 4:1 packer by Frank Force
     * regpack
@@ -13,5 +15,4 @@
     * Python 3:1
 
 BUGS:
-- HTML has a hard time printing some strings. Example: the JavaScript, number: fewest bytes ASCII packer breaks on the number 7745.
-  The encoded string there should be "<A", this HTML interprets as opening a new tag. Not sure how to fix it.
+- JS base 2^20 and unicode can occasionally give wrong results

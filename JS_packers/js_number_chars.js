@@ -42,7 +42,7 @@ Packers["JavaScript"]["number: fewest chars"].push({
                 '`': '\\`',
             }[char];
         }
-        for (let xor = 0; xor < 128; xor++) {
+        for (const xor of [0, 1, 128]) {
             let n = BigInt(number);
             let current = "";
             if ((n % (1n << 20n)) < 10n) {
@@ -73,6 +73,65 @@ Packers["JavaScript"]["number: fewest chars"].push({
             // lastly test with `backticks`
             encoded_2 = encoded.replace(/\\|\r|`|\0/g, replacer);
             encoded_2 = current + `for(c of\`${encoded_2}\`)n=n<<20n|BigInt(c.codePointAt()${xor?'^'+xor:''})`;
+            if (encoded_2.length < length) {
+                length = encoded_2.length;
+                shortest = encoded_2;
+            }
+        }
+        return shortest;
+    }
+});
+
+/***** base unicode *****/
+Packers["JavaScript"]["number: fewest chars"].push({
+    'name': "base unicode",
+    'limitations': "Must be a non-negative integer number",
+    'validity_check': function(number) {
+        return /^\d+$/.test(number);
+    },
+    'packer': function(number) {
+        let shortest = "", length = 1 / 0;
+        const replacer = function (char) {
+            return {
+                '\n': '\\n',
+                '\r': '\\r',
+                '\'': '\\\'',
+                '"': '\\"',
+                '\0': '\\0',
+                '`': '\\`',
+            }[char];
+        }
+        for (const xor of [0, 1, 128]) {
+            let n = BigInt(number);
+            let current = "";
+            if ((n % 1114111n) < 10n) {
+                current = `n=${n % 1114111n}n\n`;
+                n /= 1114111n;
+            } else {
+                current = `n=0n\n`;
+            }
+            let encoded = "";
+            while (n > 0n) {
+                encoded = String.fromCodePoint(Number(n % 1114111n) ^ xor) + encoded;
+                n /= 1114111n;
+            }
+            // first test with "quotation marks"
+            let encoded_2 = encoded.replace(/\\|\n|\r|"|\0/g, replacer);
+            encoded_2 = current + `for(c of"${encoded_2}")n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
+            if (encoded_2.length < length) {
+                length = encoded_2.length;
+                shortest = encoded_2;
+            }
+            // next test with 'apostrophes'
+            encoded_2 = encoded.replace(/\\|\n|\r|'|\0/g, replacer);
+            encoded_2 = current + `for(c of'${encoded_2}')n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
+            if (encoded_2.length < length) {
+                length = encoded_2.length;
+                shortest = encoded_2;
+            }
+            // lastly test with `backticks`
+            encoded_2 = encoded.replace(/\\|\r|`|\0/g, replacer);
+            encoded_2 = current + `for(c of\`${encoded_2}\`)n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
             if (encoded_2.length < length) {
                 length = encoded_2.length;
                 shortest = encoded_2;

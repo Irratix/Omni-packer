@@ -38,7 +38,7 @@ input.innerHTML += `
 <label for="auto_update">Auto Update (May be slow)</label><br>`;
 
 function solution_to_html(solution, packer) {
-    return `<span class="packername">${packer.name}</span><br><span class="code">${solution}</span><br><br>`;
+    return `<span class="packername">${packer.name}</span><br><textarea class="code" rows="4" readonly>${solution}</textarea><br><br>`;
 }
 
 function failed_to_html(packer) {
