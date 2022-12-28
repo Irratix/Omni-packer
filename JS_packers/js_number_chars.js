@@ -42,37 +42,44 @@ Packers["JavaScript"]["number: fewest chars"].push({
                 '`': '\\`',
             }[char];
         }
-        for (const xor of [0, 1, 128]) {
+        // build array of digit values
+        let values = [];
+        number = BigInt(number);
+        while (number > 0n) {
+            values.push(Number(number & (1n << 20n) - 1n));
+            number >>= 20n;
+        }
+        // loop over potential xor values to avoid characters that need to be escaped
+        for (const xor of [0, 1, 2, 128]) {
             let n = BigInt(number);
             let current = "";
-            if ((n % (1n << 20n)) < 10n) {
-                current = `n=${n % (1n << 20n)}n\n`;
-                n >>= 20n;
+            if (values[0] < 10) {
+                current = `n=${values.shift()}n\n`;
             } else {
                 current = `n=0n\n`;
             }
             let encoded = "";
-            while (n > 0n) {
-                encoded = String.fromCodePoint(Number(n % (1n << 20n)) ^ xor) + encoded;
-                n >>= 20n;
+            for (const code of values) {
+                encoded = String.fromCodePoint(code ^ xor) + encoded;
             }
-            // first test with "quotation marks"
-            let encoded_2 = encoded.replace(/\\|\n|\r|"|\0/g, replacer);
+            // first test with `backticks`
+            let encoded_2 = encoded.replace(/\\|\r|`|\0/g, replacer);
+            encoded_2 = current + `for(c of\`${encoded_2}\`)n=n<<20n|BigInt(c.codePointAt()${xor?'^'+xor:''})`;
+            if (encoded_2.length < length) {
+                length = encoded_2.length;
+                shortest = encoded_2;
+            }
+            if (!encoded.includes("`")) continue;
+            // then test with "quotation marks"
+            encoded_2 = encoded.replace(/\\|\n|\r|"|\0/g, replacer);
             encoded_2 = current + `for(c of"${encoded_2}")n=n<<20n|BigInt(c.codePointAt()${xor?'^'+xor:''})`;
             if (encoded_2.length < length) {
                 length = encoded_2.length;
                 shortest = encoded_2;
             }
-            // next test with 'apostrophes'
+            // lastly test with 'apostrophes'
             encoded_2 = encoded.replace(/\\|\n|\r|'|\0/g, replacer);
             encoded_2 = current + `for(c of'${encoded_2}')n=n<<20n|BigInt(c.codePointAt()${xor?'^'+xor:''})`;
-            if (encoded_2.length < length) {
-                length = encoded_2.length;
-                shortest = encoded_2;
-            }
-            // lastly test with `backticks`
-            encoded_2 = encoded.replace(/\\|\r|`|\0/g, replacer);
-            encoded_2 = current + `for(c of\`${encoded_2}\`)n=n<<20n|BigInt(c.codePointAt()${xor?'^'+xor:''})`;
             if (encoded_2.length < length) {
                 length = encoded_2.length;
                 shortest = encoded_2;
@@ -101,37 +108,44 @@ Packers["JavaScript"]["number: fewest chars"].push({
                 '`': '\\`',
             }[char];
         }
-        for (const xor of [0, 1, 128]) {
+        // build array of digit values
+        let values = [];
+        number = BigInt(number);
+        while (number > 0n) {
+            values.push(Number(number % 1114111n));
+            number /= 1114111n;
+        }
+        // loop over potential xor values to avoid characters that need to be escaped
+        for (const xor of [0, 1, 2, 128]) {
             let n = BigInt(number);
             let current = "";
-            if ((n % 1114111n) < 10n) {
-                current = `n=${n % 1114111n}n\n`;
-                n /= 1114111n;
+            if (values[0] < 10) {
+                current = `n=${values.shift()}n\n`;
             } else {
                 current = `n=0n\n`;
             }
             let encoded = "";
-            while (n > 0n) {
-                encoded = String.fromCodePoint(Number(n % 1114111n) ^ xor) + encoded;
-                n /= 1114111n;
+            for (const code of values) {
+                encoded = String.fromCodePoint(code ^ xor) + encoded;
             }
-            // first test with "quotation marks"
-            let encoded_2 = encoded.replace(/\\|\n|\r|"|\0/g, replacer);
+            // first test with `backticks`
+            let encoded_2 = encoded.replace(/\\|\r|`|\0/g, replacer);
+            encoded_2 = current + `for(c of\`${encoded_2}\`)n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
+            if (encoded_2.length < length) {
+                length = encoded_2.length;
+                shortest = encoded_2;
+            }
+            if (!encoded.includes("`")) continue;
+            // then test with "quotation marks"
+            encoded_2 = encoded.replace(/\\|\n|\r|"|\0/g, replacer);
             encoded_2 = current + `for(c of"${encoded_2}")n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
             if (encoded_2.length < length) {
                 length = encoded_2.length;
                 shortest = encoded_2;
             }
-            // next test with 'apostrophes'
+            // lastly test with 'apostrophes'
             encoded_2 = encoded.replace(/\\|\n|\r|'|\0/g, replacer);
             encoded_2 = current + `for(c of'${encoded_2}')n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
-            if (encoded_2.length < length) {
-                length = encoded_2.length;
-                shortest = encoded_2;
-            }
-            // lastly test with `backticks`
-            encoded_2 = encoded.replace(/\\|\r|`|\0/g, replacer);
-            encoded_2 = current + `for(c of\`${encoded_2}\`)n=n*1114111n+BigInt(c.codePointAt()${xor?'^'+xor:''})`;
             if (encoded_2.length < length) {
                 length = encoded_2.length;
                 shortest = encoded_2;
