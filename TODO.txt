@@ -10,7 +10,6 @@
 - Add packers (any others are welcome too):
     * JS 4:1 packer by Frank Force
     * regpack
-    * bitcrusher
     * Python 2:1
     * Python 3:1
 
