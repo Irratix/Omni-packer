@@ -12,7 +12,6 @@
     * regpack
     * bitcrusher
     * Python 2:1
-    * Python 3:1
 
 BUGS:
 - JS base 2^20 and unicode can occasionally give wrong results
