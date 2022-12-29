@@ -11,6 +11,7 @@
     * JS 4:1 packer by Frank Force
     * regpack
     * Python 2:1
+- Add auto-fixer option
 
 BUGS:
 - JS base 2^20 and unicode can occasionally give wrong results
