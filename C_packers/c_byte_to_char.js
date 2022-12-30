@@ -13,6 +13,7 @@ Packers["C"]["code: fewest chars"].push({
 /**** 3:1 *****/
 Packers["C"]["code: fewest chars"].push({
     'name': "3:1",
+    'authors': "Lydxn and Sisyphus",
     'limitations': "Must contain only ASCII characters above code 31.",
     'validity_check': function(code) {
         code = new TextEncoder().encode(code);

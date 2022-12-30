@@ -13,6 +13,7 @@ Packers["C++"]["code: fewest chars"].push({
 /**** 3:1 *****/
 Packers["C++"]["code: fewest chars"].push({
     'name': "3:1",
+    'authors': "Alex-x90 and Lydxn",
     'limitations': "Must contain only ASCII characters above code 31.",
     'validity_check': function(code) {
         code = new TextEncoder().encode(code);
