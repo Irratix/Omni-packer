@@ -15,3 +15,4 @@
 
 BUGS:
 - JS base 2^20 and unicode can occasionally give wrong results
+- Fix HTML injection
