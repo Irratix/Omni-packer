@@ -10,6 +10,21 @@ Packers["Python"]["code: fewest chars"].push({
     }
 });
 
+/**** 2:1 *****/
+Packers["Python"]["code: fewest chars"].push({
+    'name': "2:1",
+    'validity_check': () => true,
+    'packer': code => {
+        let s = '';
+        if (code.length % 2) code += ' ';
+        code = new TextEncoder().encode(code);
+        for (let i = 0; i < code.length; i += 2) {
+            s += String.fromCodePoint(code[i] | code[i + 1] << 8);
+        }
+        return `exec(bytes('${s}','u16')[2:])`;
+    }
+});
+
 /**** 3:1 *****/
 Packers["Python"]["code: fewest chars"].push({
     'name': "3:1",
