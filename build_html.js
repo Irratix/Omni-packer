@@ -7,7 +7,7 @@ function make_radio_button(items, id, text) {
         first = false;
         radio += `<label for="${item}">${item}</label> </div>`;
     }
-    radio += "</fieldset><br>";
+    radio += "</fieldset>";
     return radio;
 }
 

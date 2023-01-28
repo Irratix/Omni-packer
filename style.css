@@ -79,3 +79,8 @@ button {
     color: rgb(115, 176, 255);
     background-color: #803b3b;
 }
+
+fieldset {
+    /* css go br instead of html go br */
+    margin-bottom: 20px;
+}
