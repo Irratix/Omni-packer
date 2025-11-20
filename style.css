@@ -12,18 +12,17 @@ h1 {
     letter-spacing: 0px;
     transition-duration: 200ms;
     user-select: none;
-    width: 400px;
+    width: fit-content;
 }
 
 h1:hover {
-    letter-spacing: -8px;
-    color: #aaa;
+    color: rgb(115, 176, 255);
     transition-duration: 200ms;
 }
 
 h1:active {
-    letter-spacing: 10px;
-    color: rgb(115, 176, 255);
+    letter-spacing: -8px;
+    color: rgb(255, 150, 52);
     transition-duration: 100ms;
 }
 
