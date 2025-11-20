@@ -139,13 +139,17 @@ fieldset label:active {
     color: rgb(59, 144, 255);
 }
 
+a {
+    text-decoration: none;
+}
+
 a img {
     width: 40px;
     margin-left: 10px;
-    transition-duration: 200ms;
+    transition-duration: 100ms;
 }
 
 a img:hover {
     transform: scale(120%);
-    transition-duration: 200ms;
+    transition-duration: 100ms;
 }
