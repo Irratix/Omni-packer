@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"></style>
+    <link rel="stylesheet" href="style.css">
+    </style>
 </head>
 
 <body>
@@ -14,18 +15,19 @@
     <!-- main code -->
     <script type="text/javascript">
 
-    // list of languages
-    const Languages = [
-        "JavaScript",
-        "Python",
-        "C",
-        "C++",
-    ];
+        // list of languages
+        Languages = [
+            "JavaScript",
+            "Python",
+            "C",
+            "C++",
+            "Elixir",
+        ];
 
-    // initializing global objects
-    const Packers = {};
-    for (const lang of Languages)
-        Packers[lang] = {};
+        // initializing global objects
+        const Packers = {};
+        for (const lang of Languages)
+            Packers[lang] = {};
 
     </script>
 
@@ -42,6 +44,8 @@
 
     <script src="./Python_packers/python_byte_to_char.js"></script>
 
+    <script src="./Elixir_packers/elixir_byte_to_char.js"></script>
+
     <!-- html -->
     <script src="build_html.js"></script>
     <script src="eventlisteners.js"></script>
@@ -49,33 +53,34 @@
     <!-- apply packers -->
     <script type="text/javascript">
 
-    // apply packers
-    function pack() {
-        const source = document.getElementById("source")
-            .value
-            .replace(/\n\r|\r\n/g, '\n');
-        const lang = document.querySelector('input[name="language_selector"]:checked').value;
-        const packer_type = document.querySelector('input[name="type_selector"]:checked').value;
-        const scorer = Packers.evaluators[packer_type];
+        // apply packers
+        function pack() {
+            const source = document.getElementById("source")
+                .value
+                .replace(/\n\r|\r\n/g, '\n');
+            const lang = document.querySelector('input[name="language_selector"]:checked').value;
+            const packer_type = document.querySelector('input[name="type_selector"]:checked').value;
+            const scorer = Packers.evaluators[packer_type];
 
-        let solutions = [];
-        let failures_html = "";
-        for (const method of Packers[lang][packer_type]) {
-            if (!method.validity_check(source)) {
-                failures_html += failed_to_html(method);
-                continue;
+            let solutions = [];
+            let failures_html = "";
+            for (const method of Packers[lang][packer_type]) {
+                if (!method.validity_check(source)) {
+                    failures_html += failed_to_html(method);
+                    continue;
+                }
+                solutions.push([method.packer(source), method]);
             }
-            solutions.push([method.packer(source), method]);
-        }
-        solutions.sort((elem1, elem2) => scorer(elem1[0]) - scorer(elem2[0]));
+            solutions.sort((elem1, elem2) => scorer(elem1[0]) - scorer(elem2[0]));
 
-        let solutions_html = "";
-        for (const solution of solutions)
-            solutions_html += solution_to_html(... solution);
-        
-        document.getElementById("output").innerHTML = solutions_html + failures_html;
-    }
+            let solutions_html = "";
+            for (const solution of solutions)
+                solutions_html += solution_to_html(...solution);
+
+            document.getElementById("output").innerHTML = solutions_html + failures_html;
+        }
 
     </script>
 </body>
+
 </html>
