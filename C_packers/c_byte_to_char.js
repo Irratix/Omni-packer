@@ -43,7 +43,7 @@ Packers["C"]["code: fewest chars"].push({
             // code point reached
             compressed += String.fromCodePoint(s % p);
         }
-        return `p;main(){execlp("c",""+493,"-run",""+${501+len},p<${len});main(""[486+p]=L"${compressed}"[p/3]%(99+p++%3)+32);}`;
+        return `p;main(){execlp("c",""+493,"-run",""+${473+len},p<${len});main(""[486+p]=L"${compressed}"[p/3]%(99+p++%3)+32);}`;
     }
 });
 
