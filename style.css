@@ -12,6 +12,7 @@ h1 {
     letter-spacing: 0px;
     transition-duration: 200ms;
     user-select: none;
+    width: 400px;
 }
 
 h1:hover {
@@ -74,7 +75,6 @@ button {
     padding: 20px;
     word-wrap: break-word;
     width: 500px;
-
 }
 
 .packername {
