@@ -3,9 +3,10 @@ function make_radio_button(items, id, text) {
     let radio = `<fieldset id="${id}"> <legend>${text}</legend>`;
     let first = true;
     for (const item of items) {
-        radio += `<div> <input name="${id}" type="radio" id="${item}" value="${item}"${first?" checked":""}>`;
+        radio += `<div><label for="${item}">`;
+        radio += `<input name="${id}" type="radio" id="${item}" value="${item}"${first?" checked":""}>`;
         first = false;
-        radio += `<label for="${item}">${item}</label> </div>`;
+        radio += `${item}</label></div>`;
     }
     radio += "</fieldset>";
     return radio;
@@ -34,8 +35,9 @@ input.innerHTML += `
 <button onclick="pack()">Pack</button>`;
 
 input.innerHTML += `
+<label for="auto_update">
 <input type="checkbox" id="auto_update" name="auto_update" checked>
-<label for="auto_update">Auto Update (May be slow)</label><br>`;
+Auto Update (May be slow)</label><br>`;
 
 function solution_to_html(solution, packer) {
     return `<span class="packername">${packer.name}</span><br><textarea class="code" rows="4" readonly>${solution}</textarea><br><br>`;

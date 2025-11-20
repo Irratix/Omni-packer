@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: rgb(17, 26, 53);
     color: rgb(238, 238, 255);
@@ -13,6 +17,7 @@ h1 {
     transition-duration: 200ms;
     user-select: none;
     width: fit-content;
+    cursor: pointer;
 }
 
 h1:hover {
@@ -107,6 +112,13 @@ fieldset {
     margin-bottom: 20px;
 }
 
+label,
+input,
+button {
+    cursor: pointer;
+    user-select: none;
+}
+
 fieldset label {
     display: inline-block;
     width: 400px;
@@ -114,9 +126,9 @@ fieldset label {
 }
 
 fieldset label:hover {
-    color: rgb(147, 194, 255);
+    color: rgb(177, 211, 255);
 }
 
 fieldset label:active {
-    transform: translateY(3px);
+    color: rgb(59, 144, 255);
 }
