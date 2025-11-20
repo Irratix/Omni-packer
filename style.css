@@ -44,6 +44,12 @@ h1:active {
     min-width: 500px;
 }
 
+#links {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+}
+
 textarea {
     background-color: #fff1;
     color: white;
@@ -131,4 +137,15 @@ fieldset label:hover {
 
 fieldset label:active {
     color: rgb(59, 144, 255);
+}
+
+a img {
+    width: 40px;
+    margin-left: 10px;
+    transition-duration: 200ms;
+}
+
+a img:hover {
+    transform: scale(120%);
+    transition-duration: 200ms;
 }
