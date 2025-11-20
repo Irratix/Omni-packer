@@ -3,7 +3,30 @@ body {
     color: rgb(238, 238, 255);
     font-size: 20px;
     font-family: Atkinson, sans-serif;
-    padding: 15px;
+    padding: 12px 28px;
+}
+
+h1 {
+    font-weight: 800;
+    margin: 0px 0px 16px 0px;
+    letter-spacing: 0px;
+    transition-duration: 200ms;
+    user-select: none;
+}
+
+h1:hover {
+    letter-spacing: -8px;
+    color: #aaa;
+    transition-duration: 200ms;
+}
+
+h1:active {
+    letter-spacing: 10px;
+    color: rgb(115, 176, 255);
+    transition-duration: 100ms;
+}
+
+#main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
