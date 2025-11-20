@@ -93,16 +93,30 @@ button {
 }
 
 .failure {
-    background-color: #532626;
+    background-color: #ff000044;
 }
 
 .failure_header {
     font-weight: bold;
     color: rgb(115, 176, 255);
-    background-color: #803b3b;
+    background-color: #ff000044;
 }
 
 fieldset {
     /* css go br instead of html go br */
     margin-bottom: 20px;
+}
+
+fieldset label {
+    display: inline-block;
+    width: 400px;
+    user-select: none;
+}
+
+fieldset label:hover {
+    color: rgb(147, 194, 255);
+}
+
+fieldset label:active {
+    transform: translateY(3px);
 }
