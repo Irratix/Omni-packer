@@ -14,6 +14,9 @@ Packers["Scheme"]["code: fewest chars"].push({
 Packers["Scheme"]["code: fewest chars"].push({
     'name': "2:1",
     'validity_check': () => true,
+    'tips': [
+        "The top level must be a single form.",
+    ],
     'packer': code => {
         let s = '';
         code = new TextEncoder().encode(code);
@@ -28,6 +31,7 @@ Packers["Scheme"]["code: fewest chars"].push({
 /**** 3:1 *****/
 Packers["Scheme"]["code: fewest chars"].push({
     'name': "3:1",
+    'authors': "kg583",
     'limitations': "Must contain only ASCII characters above code 31.",
     'validity_check': function(code) {
         code = new TextEncoder().encode(code);
@@ -36,6 +40,9 @@ Packers["Scheme"]["code: fewest chars"].push({
                 return false;
         return true;
     },
+    'tips': [
+        "The top level must be a single form.",
+    ],
     'packer': function(code) {
         let compressed = "";
         code = new TextEncoder().encode(code);
