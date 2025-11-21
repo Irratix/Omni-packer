@@ -31,7 +31,7 @@ Packers["CLISP"]["code: fewest chars"].push({
         code += "#.";
         code += ' '.repeat(code.length * 2 % 3);
         code = new TextEncoder().encode(code).reverse();
-        for (let i = 0; i < len; i += 3) {
+        for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 99 * 100 * 101;
             // 99
             let q = 100 * 101;
@@ -70,7 +70,7 @@ Packers["CLISP"]["code: fewest chars"].push({
         code += "#.";
         code += ' '.repeat(code.length * 2 % 3);
         code = new TextEncoder().encode(code.toUpperCase()).reverse();
-        for (let i = 0; i < len; i += 3) {
+        for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 99 * 100 * 101;
             // 99
             let q = 100 * 101;
