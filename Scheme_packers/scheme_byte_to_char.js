@@ -48,16 +48,16 @@ Packers["Scheme"]["code: fewest chars"].push({
         code = new TextEncoder().encode(code);
         code = [...code, ...Array(code.length * 2 % 3).fill(32)];
         for (let i = 0; i < len; i += 3) {
-            let s = 0, p = 99 * 100 * 101;
+            let s = 0, p = 97 * 98 * 99;
+            // 97
+            let q = 98 * 99;
+            s += q * (code[i] - 32) * 49;
+            // 98
+            q = 97 * 99;
+            s += q * (code[i + 1] - 32) * 97;
             // 99
-            let q = 100 * 101;
-            s += q * (code[i] - 32) * 50;
-            // 100
-            q = 99 * 101;
-            s += q * (code[i + 1] - 32) * 99;
-            // 101
-            q = 99 * 100;
-            s += q * (code[i + 2] - 32) * 51;
+            q = 97 * 98;
+            s += q * (code[i + 2] - 32) * 50;
             // code point reached
             compressed += String.fromCodePoint(s % p + 32);
         }
