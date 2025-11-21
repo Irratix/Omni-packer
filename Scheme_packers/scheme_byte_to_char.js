@@ -61,6 +61,6 @@ Packers["Scheme"]["code: fewest chars"].push({
             // code point reached
             compressed += String.fromCodePoint(s % p + 32);
         }
-        return `(eval(read(open-input-string(fold-left(lambda'}(format"~a~{~a~}".'(map(lambda(x)(integer->char(+(mod(char-}#\ )x)32)))'(97 98 99))))""(string->list"${compressed}")))))`;
+        return `(eval(read(open-input-string(fold-left(lambda\`}(format"~a~{~a~}".\`(map(lambda(x)(integer->char(+(mod(char-}#\\ )x)32)))'(97 98 99))))""(string->list"${compressed}")))))`;
     }
 });
