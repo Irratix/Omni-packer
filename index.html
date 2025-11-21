@@ -1,102 +1,101 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Omni-Packer</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    </style>
-</head>
+    <head>
+        <title>omni-packer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    </head>
 
-<body>
-    <h1>omni-packer</h1>
-    <div id="main">
-        <div id="input"></div>
-        <div id="output"></div>
-    </div>
-    <div id="links">
-        <a href="https://mengersponge.website/" title="Menger Sponge" target="_blank">
-            <img src="./imgs/mengersponge.png">
-        </a>
-        <a href="https://code.golf/" title="code.golf" target="_blank">
-            <img src="./imgs/codegolf.svg">
-        </a>
-        <a href="https://github.com/Irratix/Omni-packer" title="GitHub" target="_blank">
-            <img src="./imgs/github.png">
-        </a>
-    </div>
+    <body>
+        <h1>omni-packer</h1>
+        <div id="main">
+            <div id="input"></div>
+            <div id="output"></div>
+        </div>
+        <div id="links">
+            <a href="https://mengersponge.website/" title="Menger Sponge" target="_blank">
+                <img src="./_assets/imgs/mengersponge.png">
+            </a>
+            <a href="https://code.golf/" title="code.golf" target="_blank">
+                <img src="./_assets/imgs/codegolf.svg">
+            </a>
+            <a href="https://github.com/Irratix/Omni-packer" title="GitHub" target="_blank">
+                <img src="./_assets/imgs/github.png">
+            </a>
+        </div>
+        
+        <!-- main code -->
+        <script type="text/javascript">
 
-    <!-- main code -->
-    <script type="text/javascript">
+            // list of languages
+            Languages = [
+                "JavaScript",
+                "Python",
+                "C",
+                "C++",
+                "Elixir",
+            ];
 
-        // list of languages
-        Languages = [
-            "JavaScript",
-            "Python",
-            "C",
-            "C++",
-            "Elixir",
-        ];
+            // initializing global objects
+            const Packers = {};
+            for (const lang of Languages)
+                Packers[lang] = {};
 
-        // initializing global objects
-        const Packers = {};
-        for (const lang of Languages)
-            Packers[lang] = {};
+        </script>
 
-    </script>
+        <!-- other JS files -->
+        <script src="packer_types.js"></script>
 
-    <!-- other JS files -->
-    <script src="packer_types.js"></script>
+        <!-- files with packers go here -->
+        <script src="./C_packers/c_byte_to_char.js"></script>
+        <script src="./C++_packers/c++_byte_to_char.js"></script>
 
-    <!-- files with packers go here -->
-    <script src="./C_packers/c_byte_to_char.js"></script>
-    <script src="./C++_packers/c++_byte_to_char.js"></script>
+        <script src="./JS_packers/js_byte_to_char.js"></script>
+        <script src="./JS_packers/js_number_bytes.js"></script>
+        <script src="./JS_packers/js_number_chars.js"></script>
 
-    <script src="./JS_packers/js_byte_to_char.js"></script>
-    <script src="./JS_packers/js_number_bytes.js"></script>
-    <script src="./JS_packers/js_number_chars.js"></script>
+        <script src="./Python_packers/python_byte_to_char.js"></script>
 
-    <script src="./Python_packers/python_byte_to_char.js"></script>
+        <script src="./Elixir_packers/elixir_byte_to_char.js"></script>
 
-    <script src="./Elixir_packers/elixir_byte_to_char.js"></script>
+        <!-- html -->
+        <script src="build_html.js"></script>
+        <script src="eventlisteners.js"></script>
 
-    <!-- html -->
-    <script src="build_html.js"></script>
-    <script src="eventlisteners.js"></script>
+        <!-- apply packers -->
+        <script type="text/javascript">
 
-    <!-- apply packers -->
-    <script type="text/javascript">
+            // apply packers
+            function pack() {
+                const source = document.getElementById("source")
+                    .value
+                    .replace(/\n\r|\r\n/g, '\n');
+                const lang = document.querySelector('input[name="language_selector"]:checked').value;
+                const packer_type = document.querySelector('input[name="type_selector"]:checked').value;
+                const scorer = Packers.evaluators[packer_type];
 
-        // apply packers
-        function pack() {
-            const source = document.getElementById("source")
-                .value
-                .replace(/\n\r|\r\n/g, '\n');
-            const lang = document.querySelector('input[name="language_selector"]:checked').value;
-            const packer_type = document.querySelector('input[name="type_selector"]:checked').value;
-            const scorer = Packers.evaluators[packer_type];
-
-            let solutions = [];
-            let failures_html = "";
-            for (const method of Packers[lang][packer_type]) {
-                if (!method.validity_check(source)) {
-                    failures_html += failed_to_html(method);
-                    continue;
+                let solutions = [];
+                let failures_html = "";
+                for (const method of Packers[lang][packer_type]) {
+                    if (!method.validity_check(source)) {
+                        failures_html += failed_to_html(method);
+                        continue;
+                    }
+                    solutions.push([method.packer(source), method]);
                 }
-                solutions.push([method.packer(source), method]);
+                solutions.sort((elem1, elem2) => scorer(elem1[0]) - scorer(elem2[0]));
+
+                let solutions_html = "";
+                for (const solution of solutions)
+                    solutions_html += solution_to_html(...solution);
+
+                document.getElementById("output").innerHTML = solutions_html + failures_html;
             }
-            solutions.sort((elem1, elem2) => scorer(elem1[0]) - scorer(elem2[0]));
 
-            let solutions_html = "";
-            for (const solution of solutions)
-                solutions_html += solution_to_html(...solution);
-
-            document.getElementById("output").innerHTML = solutions_html + failures_html;
-        }
-
-    </script>
-</body>
+        </script>
+    </body>
 
 </html>

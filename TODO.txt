@@ -11,8 +11,6 @@
     * JS 4:1 packer by Frank Force
     * regpack
 - Add auto-fixer option
-- Add icon link to github repo
-- Add icon link to mengersponge.website
 
 BUGS:
 - JS base 2^20 and unicode can occasionally give wrong results

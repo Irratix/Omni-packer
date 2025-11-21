@@ -12,12 +12,6 @@ document.getElementById("language_selector").onclick = function (e) {
 };
 document.getElementById("language_selector").click();
 
-function pack_if_auto_update() {
-    if (document.getElementById("auto_update").checked) {
-        pack();
-    }
-}
-
 // pack if language or source is changed
 document.getElementById("language_selector").oninput = pack_if_auto_update;
 document.getElementById("source").oninput = pack_if_auto_update;
@@ -25,3 +19,10 @@ document.getElementById("source").oninput = pack_if_auto_update;
 window.onload = function(e) {
     pack();
 };
+
+// call pack() if auto_update checkbox is checked
+function pack_if_auto_update() {
+    if (document.getElementById("auto_update").checked) {
+        pack();
+    }
+}

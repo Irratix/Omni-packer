@@ -40,9 +40,23 @@ input.innerHTML += `
 Auto Update (May be slow)</label><br>`;
 
 function solution_to_html(solution, packer) {
-    return `<span class="packername">${packer.name}</span><br><textarea class="code" rows="4" readonly>${solution}</textarea><br><br>`;
+    return `
+        <span class="packername">
+            ${packer.name} 👤 🌐 ℹ️
+        </span>
+        <br>
+        <textarea class="code" rows="4" readonly>${solution}</textarea>
+        <br>
+        <br>`;
 }
 
 function failed_to_html(packer) {
-    return `<span class="failure_header">${packer.name}</span><br><span class="failure">${packer.limitations}</span><br><br>`;
+    return `
+        <span class="failure_header">
+            ${packer.name} 👤 🌐 ℹ️
+        </span>
+        <br>
+        <span class="failure">${packer.limitations}</span>
+        <br>
+        <br>`;
 }
