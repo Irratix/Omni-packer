@@ -28,7 +28,7 @@ Packers["Common Lisp"]["code: fewest chars"].push({
     ],
     'packer': function(code) {
         let compressed = "";
-        code += "#.";
+        code = "#." + code;
         code += ' '.repeat(code.length * 2 % 3);
         code = new TextEncoder().encode(code).reverse();
         for (let i = 0; i < code.length; i += 3) {
@@ -67,20 +67,20 @@ Packers["Common Lisp"]["code: fewest chars"].push({
     ],
     'packer': function(code) {
         let compressed = "";
-        code += "#.";
+        code = "#." + code;
         code += ' '.repeat(code.length * 2 % 3);
         code = new TextEncoder().encode(code.toUpperCase()).reverse();
         for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 97 * 98 * 99;
             // 97
             let q = 98 * 99;
-            s += q * (code[i] - 32) * 49;
+            s += q * code[i] * 49;
             // 98
             q = 97 * 99;
-            s += q * (code[i + 1] - 32) * 97;
+            s += q * code[i + 1] * 97;
             // 99
             q = 97 * 98;
-            s += q * (code[i + 2] - 32) * 50;
+            s += q * code[i + 2] * 50;
             // code point reached
             compressed += String.fromCodePoint(s % p);
         }
