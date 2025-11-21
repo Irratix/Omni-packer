@@ -1,6 +1,6 @@
-Packers["CLISP"]["code: fewest chars"] = [];
+Packers["Common Lisp"]["code: fewest chars"] = [];
 
-Packers["CLISP"]["code: fewest chars"].push({
+Packers["Common Lisp"]["code: fewest chars"].push({
     'name': "no packer",
     'validity_check': function(code) {
         return true;
@@ -11,7 +11,7 @@ Packers["CLISP"]["code: fewest chars"].push({
 });
 
 /**** 3:1 *****/
-Packers["CLISP"]["code: fewest chars"].push({
+Packers["Common Lisp"]["code: fewest chars"].push({
     'name': "3:1",
     'authors': "CLOStrophobic and kg583",
     'limitations': "Must contain only ASCII characters above code 31.",
@@ -50,7 +50,7 @@ Packers["CLISP"]["code: fewest chars"].push({
 });
 
 /**** 3:1 (uppercase) *****/
-Packers["CLISP"]["code: fewest chars"].push({
+Packers["Common Lisp"]["code: fewest chars"].push({
     'name': "3:1 (uppercase)",
     'authors': "CLOStrophobic and kg583",
     'limitations': "Must contain only ASCII characters below code 123.",

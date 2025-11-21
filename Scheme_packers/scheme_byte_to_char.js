@@ -47,7 +47,7 @@ Packers["Scheme"]["code: fewest chars"].push({
         let compressed = "";
         code = new TextEncoder().encode(code);
         code = [...code, ...Array(code.length * 2 % 3).fill(32)];
-        for (let i = 0; i < len; i += 3) {
+        for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 97 * 98 * 99;
             // 97
             let q = 98 * 99;
