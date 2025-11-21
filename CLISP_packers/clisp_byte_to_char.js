@@ -13,6 +13,7 @@ Packers["CLISP"]["code: fewest chars"].push({
 /**** 3:1 *****/
 Packers["CLISP"]["code: fewest chars"].push({
     'name': "3:1",
+    'authors': "CLOStrophobic and kg583",
     'limitations': "Must contain only ASCII characters above code 31.",
     'validity_check': function(code) {
         code = new TextEncoder().encode(code);
@@ -21,15 +22,15 @@ Packers["CLISP"]["code: fewest chars"].push({
                 return false;
         return true;
     },
-	'tips': [
-		"Remove newlines in format strings using `~%`.",
+    'tips': [
+        "Remove newlines in format strings using `~%`.",
         "The top level must be a single form.",
     ],
     'packer': function(code) {
         let compressed = "";
-		code += "#.";
+        code += "#.";
         code += ' '.repeat(code.length * 2 % 3);
-		code = new TextEncoder().encode(code).reverse();
+        code = new TextEncoder().encode(code).reverse();
         for (let i = 0; i < len; i += 3) {
             let s = 0, p = 99 * 100 * 101;
             // 99
@@ -51,6 +52,7 @@ Packers["CLISP"]["code: fewest chars"].push({
 /**** 3:1 (uppercase) *****/
 Packers["CLISP"]["code: fewest chars"].push({
     'name': "3:1 (uppercase)",
+    'authors': "CLOStrophobic and kg583",
     'limitations': "Must contain only ASCII characters below code 123.",
     'validity_check': function(code) {
         code = new TextEncoder().encode(code);
@@ -59,15 +61,15 @@ Packers["CLISP"]["code: fewest chars"].push({
                 return false;
         return true;
     },
-	'tips': [
-		"Do not use if you have a string literal with necessarily lowercase content.",
+    'tips': [
+        "Do not use if you have a string literal with necessarily lowercase content.",
         "The top level must be a single form.",
     ],
     'packer': function(code) {
         let compressed = "";
-		code += "#.";
+        code += "#.";
         code += ' '.repeat(code.length * 2 % 3);
-		code = new TextEncoder().encode(code.toUpperCase()).reverse();
+        code = new TextEncoder().encode(code.toUpperCase()).reverse();
         for (let i = 0; i < len; i += 3) {
             let s = 0, p = 99 * 100 * 101;
             // 99
