@@ -50,6 +50,16 @@ h1:active {
     right: 40px;
 }
 
+.info {
+    font-size: 12pt;
+    color: #aaa;
+}
+
+a {
+    color: rgb(126, 255, 255);
+
+}
+
 textarea {
     background-color: #fff1;
     color: white;

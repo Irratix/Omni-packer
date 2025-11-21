@@ -46,7 +46,11 @@ function solution_to_html(solution, packer) {
     str += `</span><br>`;
     str += `<textarea class="code" rows="4" readonly>`;
     str += solution;
-    str += `</textarea><br><br>`;
+    str += `</textarea>`;
+    str += packer.tips ? `<span title="Additional tips and info for this packer" class="info">ℹ️ ${packer.tips}</span><br>` : "";
+    str += packer.authors ? `<span title="Author(s) of this packer" class="info">👤 ${packer.authors}</span><br>` : "";
+    str += packer.src ? `<span title="Link to the source of this packer" class="info">🌐 <a href="${packer.src}">Source</a></span><br>` : "";
+    str += `<br><br>`
 
     return str;
 }
