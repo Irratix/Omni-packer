@@ -40,23 +40,25 @@ input.innerHTML += `
 Auto Update (May be slow)</label><br>`;
 
 function solution_to_html(solution, packer) {
-    return `
-        <span class="packername">
-            ${packer.name} 👤 🌐 ℹ️
-        </span>
-        <br>
-        <textarea class="code" rows="4" readonly>${solution}</textarea>
-        <br>
-        <br>`;
+    let str = ""
+    str += `<span class="packername">`;
+    str += packer.name;
+    str += `</span><br>`;
+    str += `<textarea class="code" rows="4" readonly>`;
+    str += solution;
+    str += `</textarea><br><br>`;
+
+    return str;
 }
 
 function failed_to_html(packer) {
-    return `
-        <span class="failure_header">
-            ${packer.name} 👤 🌐 ℹ️
-        </span>
-        <br>
-        <span class="failure">${packer.limitations}</span>
-        <br>
-        <br>`;
+    let str = "";
+    str += `<span class="failure_header">`;
+    str += packer.name;
+    str += `</span><br>`;
+    str += `<span class="failure">`;
+    str += packer.limitations;
+    str += `</span><br><br>`;
+
+    return str;
 }
