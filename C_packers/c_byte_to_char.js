@@ -25,10 +25,10 @@ Packers["C"]["code: fewest chars"].push({
     'packer': function(code) {
         let compressed = "";
         code = code.replace(/\n/g, '\\n');
-        code += "/".repeat((3 * code.length + 2) % 4);
+        code += "/".repeat((code.length * 3 + 2) % 4);
         const offset = code.length;
         code += "//proc/1/cmdline";
-        code += " ".repeat(2 * code.length % 3);
+        code += " ".repeat(code.length * 2 % 3);
         code = new TextEncoder().encode(code);
         for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 99 * 100 * 101;
@@ -50,7 +50,7 @@ Packers["C"]["code: fewest chars"].push({
 
 Packers["C"]["code: fewest chars"].push({
     'name': "3:1 (with args)",
-    'authors': "Lydxn, Sisyphus and KasperKivimaeki",
+    'authors': "Lydxn, Sisyphus, KasperKivimaeki and Mukundan314",
     'limitations': "Must contain only newlines and ASCII characters above code 31.",
     'validity_check': function(code) {
         code = new TextEncoder().encode(code);
@@ -60,13 +60,14 @@ Packers["C"]["code: fewest chars"].push({
         return true;
     },
     'packer': function(code) {
-        code = code.replace(/\n/g, '\\n');
         let compressed = "";
-        code += ' '.repeat((code.length + 1) * 2 % 3);
+        code = code.replace(/\n/g, '\\n');
+        code += "/".repeat((code.length * 3 + 1) % 4);
+        const offset = code.length;
         code += "//proc/1/cmdline";
+        code += " ".repeat(code.length * 2 % 3);
         code = new TextEncoder().encode(code);
-        const len = code.length;
-        for (let i = 0; i < len; i += 3) {
+        for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 99 * 100 * 101;
             // 99
             let q = 100 * 101;
@@ -80,6 +81,6 @@ Packers["C"]["code: fewest chars"].push({
             // code point reached
             compressed += String.fromCodePoint(s % p);
         }
-        return `char s[999];p,i;main(j,x)int**x;{for(*x--=s+${len-14},*x--="-run";p<${len};*x=s)s[p]=L"${compressed}"[p/3]%(99+p++%3)+32;execvp("c",x);}`;
+        return `p;main(_,x)char**x;{for(*x--=""+${offset+6},*x--="-run";p<${offset+16};)(*x="")[p]=L"${compressed}"[p/3]%(99+p++%3)+32;execvp("c",x);}`
     }
 });
