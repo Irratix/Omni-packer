@@ -22,6 +22,7 @@ Packers["C"]["code: fewest chars"].push({
                 return false;
         return true;
     },
+    'tips': ['Newlines are supported only within string literals.'],
     'packer': function(code) {
         let compressed = "";
         code = code.replace(/\n/g, '\\n');
@@ -59,6 +60,7 @@ Packers["C"]["code: fewest chars"].push({
                 return false;
         return true;
     },
+    'tips': ['Newlines are supported only within string literals.'],
     'packer': function(code) {
         let compressed = "";
         code = code.replace(/\n/g, '\\n');
