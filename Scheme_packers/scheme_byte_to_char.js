@@ -15,6 +15,7 @@ Packers["Scheme"]["code: fewest chars"].push({
     'name': "2:1",
     'validity_check': () => true,
     'tips': [
+        "Whitespace before brackets in the input code can sometimes result in invalid packed code. It's currently unknown what causes this.",
         "The top level must be a single form.",
     ],
     'packer': code => {
