@@ -62,12 +62,15 @@ Packers["C"]["code: fewest chars"].push({
     },
     'tips': ['Newlines are supported only within string literals.'],
     'packer': function(code) {
-        let compressed = "";
         code = code.replace(/\n/g, '\\n');
-        code += "/".repeat((code.length * 3 + 1) % 4);
-        const offset = code.length;
+        code += "/".repeat((code.length * 3 + 3) % 4);
         code += "//proc/1/cmdline";
+        const decodeLen = code.length;
+
         code += " ".repeat(code.length * 2 % 3);
+        const offset = code.length / 3 * 4 - decodeLen + 22;
+
+        let compressed = "";
         code = new TextEncoder().encode(code);
         for (let i = 0; i < code.length; i += 3) {
             let s = 0, p = 99 * 100 * 101;
@@ -83,6 +86,7 @@ Packers["C"]["code: fewest chars"].push({
             // code point reached
             compressed += String.fromCodePoint(s % p);
         }
-        return `p;main(_,x)char**x;{for(*x--=""+${offset+6},*x--="-run";p<${offset+16};)(*x="")[p]=L"${compressed}"[p/3]%(99+p++%3)+32;execvp("c",x);}`;
+
+        return `p;main(_,x)char**x;{for(;p<${decodeLen};(x[-2]="")[p]=L"${compressed}"[p/3]%(99+p++%3)+32)*x=""-${offset};execvp("c",x-2);}`;
     }
 });
